@@ -8,16 +8,28 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/ngshopsy",
         "index": "./src/index.html",
         "main": "./src/main.ts",
-        "polyfills": ["zone.js"],
+        "polyfills": [
+          "zone.js"
+        ],
         "tsConfig": "./tsconfig.app.json",
-        "assets": ["./src/favicon.ico", "./src/assets", "src/assets/svg/*"],
-        "styles": ["./src/styles.scss"],
-        "scripts": ["node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"]
+        "assets": [
+          "./src/favicon.ico",
+          "./src/assets",
+          "src/assets/svg/*"
+        ],
+        "styles": [
+          "./src/styles.scss"
+        ],
+        "scripts": [
+          "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+        ]
       },
       "configurations": {
         "production": {
@@ -66,14 +78,21 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["./src/**/*.ts", "./src/**/*.html"]
+        "lintFilePatterns": [
+          "./src/**/*.ts",
+          "./src/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectName}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectName}"
+      ],
       "options": {
         "jestConfig": "jest.config.ts",
         "passWithNoTests": true
@@ -98,7 +117,12 @@
         "configDir": "./.storybook",
         "browserTarget": "ngshopsy:build",
         "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "."]
+        "compodocArgs": [
+          "-e",
+          "json",
+          "-d",
+          "."
+        ]
       },
       "configurations": {
         "ci": {
@@ -108,13 +132,20 @@
     },
     "build-storybook": {
       "executor": "@storybook/angular:build-storybook",
-      "outputs": ["{options.outputDir}"],
+      "outputs": [
+        "{options.outputDir}"
+      ],
       "options": {
         "outputDir": "dist/storybook/ngshopsy",
         "configDir": "./.storybook",
         "browserTarget": "ngshopsy:build",
         "compodoc": true,
-        "compodocArgs": ["-e", "json", "-d", "."]
+        "compodocArgs": [
+          "-e",
+          "json",
+          "-d",
+          "."
+        ]
       },
       "configurations": {
         "ci": {
@@ -132,6 +163,15 @@
         "ci": {
           "buildTarget": "ngshopsy:build-storybook:ci"
         }
+      }
+    },
+    "component-test": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "cypress.config.ts",
+        "testingType": "component",
+        "skipServe": true,
+        "devServerTarget": "ngshopsy:build"
       }
     }
   }

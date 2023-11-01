@@ -55,6 +55,9 @@
     },
     {
       "path": "./.storybook/tsconfig.json"
+    },
+    {
+      "path": "./cypress/tsconfig.json"
     }
   ],
   "compileOnSave": false,
