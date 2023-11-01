@@ -1,0 +1,19 @@
+ngs-ui-messages {
+  .container {
+    max-width: none;
+    padding: 0;
+
+    .alert {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .clear-messages {
+    cursor: pointer;
+    max-width: fit-content;
+    border: 1px solid #ccc;
+    padding: 0.2rem 1rem 0.2rem 1rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+  }
+}

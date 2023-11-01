@@ -1,0 +1,31 @@
+ngs-campaign-type.card {
+  padding: 2rem;
+  text-align: center;
+
+  .card-body {
+    margin-top: 1rem;
+
+    @media (max-width: 578px) and (min-width: 391px) {
+      .card-text {
+        height: 20rem;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 992px) {
+      .card-text {
+        height: 11rem;
+      }
+    }
+
+    @media (min-width: 993px) {
+      .card-text {
+        height: 6rem;
+      }
+    }
+  }
+
+  .card-img-top svg {
+    width: 15rem;
+    height: 15rem;
+  }
+}

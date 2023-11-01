@@ -1,0 +1,12 @@
+/** Creates theme with given theme definations */
+@mixin define-theme($theme-name, $theme) {
+  .#{$theme-name} {
+    @each $selector, $selector-map in $theme {
+      .#{$selector} {
+        @each $key, $value in $selector-map {
+          #{$key}: $value !important;
+        }
+      }
+    }
+  }
+}

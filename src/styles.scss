@@ -1,0 +1,15 @@
+@import '../node_modules/bootstrap/scss/bootstrap';
+@import 'styling/theming/index';
+
+input.error {
+  border: 1px solid red;
+}
+
+.validation-error {
+  font-size: 0.7rem;
+  color: red;
+}
+
+form .invalid-feedback {
+  display: block;
+}

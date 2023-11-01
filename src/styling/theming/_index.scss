@@ -1,0 +1,4 @@
+@use 'theme';
+@use 'theme-orange';
+
+@include theme.define-theme('theme-orange', theme-orange.$theme-definations);

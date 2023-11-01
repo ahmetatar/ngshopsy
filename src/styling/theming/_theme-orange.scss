@@ -1,0 +1,20 @@
+$primary-color: #f9a826;
+$accent-color: #58585d;
+$button-text-color: #000;
+
+$theme-definations: (
+  'link-container a': (
+    color: $button-text-color,
+  ),
+
+  btn-primary: (
+    background-color: $primary-color,
+    border: 2px solid $accent-color,
+    color: $button-text-color,
+  ),
+
+  'form-check-input:checked': (
+    background-color: $primary-color,
+    border-color: $primary-color,
+  ),
+);

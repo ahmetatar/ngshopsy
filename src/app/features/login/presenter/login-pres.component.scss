@@ -1,0 +1,56 @@
+@import '../../../../styling/theming/theme-orange';
+
+ngs-login-pres {
+  .login-form {
+    border: 1px solid #ccc;
+    padding: 2rem;
+    border-radius: 7px;
+    box-shadow: 1px 1px 16px 1px rgba(130, 122, 122, 0.75);
+    -webkit-box-shadow: 1px 1px 16px 1px rgba(130, 122, 122, 0.75);
+    -moz-box-shadow: 1px 1px 16px 1px rgba(130, 122, 122, 0.75);
+
+    label {
+      font-weight: 400;
+    }
+
+    ::placeholder {
+      font-size: 13px;
+      color: $accent-color;
+    }
+
+    .user-interactions {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .signup {
+      margin-top: 3rem;
+      text-align: center;
+
+      > span {
+        color: $accent-color;
+      }
+    }
+
+    .login-logo {
+      margin-bottom: 2rem;
+      text-align: center;
+
+      svg {
+        width: 300px;
+        height: auto;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .user-interactions {
+        display: block;
+
+        .link-container {
+          text-align: center;
+          margin-top: 3rem;
+        }
+      }
+    }
+  }
+}

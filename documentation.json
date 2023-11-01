@@ -1,0 +1,588 @@
+{
+    "pipes": [],
+    "interfaces": [],
+    "injectables": [],
+    "guards": [],
+    "interceptors": [],
+    "classes": [],
+    "directives": [],
+    "components": [],
+    "modules": [],
+    "miscellaneous": {
+        "variables": [
+            {
+                "name": "actions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  onLogout: action('logout'),\n  onLogin: action('login'),\n}",
+                "rawdescription": "Story actions",
+                "description": "<p>Story actions</p>\n"
+            },
+            {
+                "name": "actions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  onMessageClosed: action('onMessageClosed'),\n}",
+                "rawdescription": "Storybook actions to bind component events",
+                "description": "<p>Storybook actions to bind component events</p>\n"
+            },
+            {
+                "name": "actions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{}",
+                "rawdescription": "Story actions",
+                "description": "<p>Story actions</p>\n"
+            },
+            {
+                "name": "Authenticated",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args: NavigationPresComponent) => ({\n    props: {\n      ...Primary.args,\n      ...args,\n      ...events,\n    },\n  }),\n  args: {\n    navigationModel: {\n      isAuthenticated: true,\n      email: 'ahmet.atar@amadeus.com',\n    },\n  },\n}",
+                "rawdescription": "Authenticated story",
+                "description": "<p>Authenticated story</p>\n"
+            },
+            {
+                "name": "Dismissible",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  render: (args: UiMessagesComponent) => ({\n    props: {\n      ...args,\n      onMessageClosed: actions.onMessageClosed,\n    },\n  }),\n  args: {\n    options: {\n      dismissible: true,\n    },\n  },\n  parameters: {\n    controls: {\n      exclude: ['onMessageClosed'],\n    },\n  },\n}",
+                "rawdescription": "Dismissible alert box story",
+                "description": "<p>Dismissible alert box story</p>\n"
+            },
+            {
+                "name": "events",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  login: actions.onLogin,\n  logout: actions.onLogout,\n}",
+                "rawdescription": "Component events binded to actions",
+                "description": "<p>Component events binded to actions</p>\n"
+            },
+            {
+                "name": "events",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{}",
+                "rawdescription": "Component events binded to actions",
+                "description": "<p>Component events binded to actions</p>\n"
+            },
+            {
+                "name": "InvalidForm",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/login/presenter/login-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args: LoginPresComponent) => {\n    const form = new FormGroup({\n      email: new FormControl(),\n      password: new FormControl(),\n      isRemember: new FormControl(false),\n    });\n\n    form.controls.email.setErrors({invalidUser: true});\n    form.controls.email.markAsTouched();\n    form.controls.password.setErrors({invalidPassword: true});\n    form.controls.password.markAsTouched();\n\n    return {\n      props: {\n        ...args,\n        form,\n      },\n    };\n  },\n}",
+                "rawdescription": "Invalid form",
+                "description": "<p>Invalid form</p>\n"
+            },
+            {
+                "name": "messagesSubject",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "new BehaviorSubject<UiMessage[]>([\n  {\n    id: '1',\n    title: 'File download',\n    text: 'Download completed successfully!',\n    messageType: MessageType.Success,\n  },\n  {\n    id: '2',\n    title: 'Opps! An error occured.',\n    text: 'An error occured while downloding file. Try again later.',\n    messageType: MessageType.Error,\n  },\n])",
+                "rawdescription": "Message subject to replace message store",
+                "description": "<p>Message subject to replace message store</p>\n"
+            },
+            {
+                "name": "mockUiMessageService",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  messages$: messagesSubject.asObservable(),\n  clearMessages: () => messagesSubject.next([]),\n  removeMessage: () => {},\n}",
+                "rawdescription": "Mock implementation for UiMessageService",
+                "description": "<p>Mock implementation for UiMessageService</p>\n"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/login/presenter/login-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args: LoginPresComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}",
+                "rawdescription": "Default story",
+                "description": "<p>Default story</p>\n"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args: NavigationPresComponent) => ({\n    props: {\n      ...args,\n      ...events,\n    },\n  }),\n}",
+                "rawdescription": "Default story",
+                "description": "<p>Default story</p>\n"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  render: (args: UiMessagesComponent) => ({\n    props: args,\n  }),\n}",
+                "rawdescription": "Default story",
+                "description": "<p>Default story</p>\n"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story",
+                "defaultValue": "{\n  render: (args: CampaignTypeSelectionPresComponent) => ({\n    props: {\n      ...args,\n      ...events,\n    },\n  }),\n}",
+                "rawdescription": "Default story",
+                "description": "<p>Default story</p>\n"
+            }
+        ],
+        "functions": [],
+        "typealiases": [
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<LoginPresComponent>",
+                "file": "src/app/features/login/presenter/login-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Default component story type</p>\n",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<NavigationPresComponent>",
+                "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Default component story type</p>\n",
+                "kind": 180
+            },
+            {
+                "name": "Story",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "StoryObj<CampaignTypeSelectionPresComponent>",
+                "file": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "description": "<p>Default component story type</p>\n",
+                "kind": 180
+            }
+        ],
+        "enumerations": [],
+        "groupedVariables": {
+            "src/app/features/navigation/presenter/navigation-pres.component.stories.ts": [
+                {
+                    "name": "actions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  onLogout: action('logout'),\n  onLogin: action('login'),\n}",
+                    "rawdescription": "Story actions",
+                    "description": "<p>Story actions</p>\n"
+                },
+                {
+                    "name": "Authenticated",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args: NavigationPresComponent) => ({\n    props: {\n      ...Primary.args,\n      ...args,\n      ...events,\n    },\n  }),\n  args: {\n    navigationModel: {\n      isAuthenticated: true,\n      email: 'ahmet.atar@amadeus.com',\n    },\n  },\n}",
+                    "rawdescription": "Authenticated story",
+                    "description": "<p>Authenticated story</p>\n"
+                },
+                {
+                    "name": "events",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  login: actions.onLogin,\n  logout: actions.onLogout,\n}",
+                    "rawdescription": "Component events binded to actions",
+                    "description": "<p>Component events binded to actions</p>\n"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args: NavigationPresComponent) => ({\n    props: {\n      ...args,\n      ...events,\n    },\n  }),\n}",
+                    "rawdescription": "Default story",
+                    "description": "<p>Default story</p>\n"
+                }
+            ],
+            "src/app/shared/components/ui-messages/ui-messages.component.stories.ts": [
+                {
+                    "name": "actions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  onMessageClosed: action('onMessageClosed'),\n}",
+                    "rawdescription": "Storybook actions to bind component events",
+                    "description": "<p>Storybook actions to bind component events</p>\n"
+                },
+                {
+                    "name": "Dismissible",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  render: (args: UiMessagesComponent) => ({\n    props: {\n      ...args,\n      onMessageClosed: actions.onMessageClosed,\n    },\n  }),\n  args: {\n    options: {\n      dismissible: true,\n    },\n  },\n  parameters: {\n    controls: {\n      exclude: ['onMessageClosed'],\n    },\n  },\n}",
+                    "rawdescription": "Dismissible alert box story",
+                    "description": "<p>Dismissible alert box story</p>\n"
+                },
+                {
+                    "name": "messagesSubject",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new BehaviorSubject<UiMessage[]>([\n  {\n    id: '1',\n    title: 'File download',\n    text: 'Download completed successfully!',\n    messageType: MessageType.Success,\n  },\n  {\n    id: '2',\n    title: 'Opps! An error occured.',\n    text: 'An error occured while downloding file. Try again later.',\n    messageType: MessageType.Error,\n  },\n])",
+                    "rawdescription": "Message subject to replace message store",
+                    "description": "<p>Message subject to replace message store</p>\n"
+                },
+                {
+                    "name": "mockUiMessageService",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  messages$: messagesSubject.asObservable(),\n  clearMessages: () => messagesSubject.next([]),\n  removeMessage: () => {},\n}",
+                    "rawdescription": "Mock implementation for UiMessageService",
+                    "description": "<p>Mock implementation for UiMessageService</p>\n"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  render: (args: UiMessagesComponent) => ({\n    props: args,\n  }),\n}",
+                    "rawdescription": "Default story",
+                    "description": "<p>Default story</p>\n"
+                }
+            ],
+            "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts": [
+                {
+                    "name": "actions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{}",
+                    "rawdescription": "Story actions",
+                    "description": "<p>Story actions</p>\n"
+                },
+                {
+                    "name": "events",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{}",
+                    "rawdescription": "Component events binded to actions",
+                    "description": "<p>Component events binded to actions</p>\n"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args: CampaignTypeSelectionPresComponent) => ({\n    props: {\n      ...args,\n      ...events,\n    },\n  }),\n}",
+                    "rawdescription": "Default story",
+                    "description": "<p>Default story</p>\n"
+                }
+            ],
+            "src/app/features/login/presenter/login-pres.component.stories.ts": [
+                {
+                    "name": "InvalidForm",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/login/presenter/login-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args: LoginPresComponent) => {\n    const form = new FormGroup({\n      email: new FormControl(),\n      password: new FormControl(),\n      isRemember: new FormControl(false),\n    });\n\n    form.controls.email.setErrors({invalidUser: true});\n    form.controls.email.markAsTouched();\n    form.controls.password.setErrors({invalidPassword: true});\n    form.controls.password.markAsTouched();\n\n    return {\n      props: {\n        ...args,\n        form,\n      },\n    };\n  },\n}",
+                    "rawdescription": "Invalid form",
+                    "description": "<p>Invalid form</p>\n"
+                },
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/app/features/login/presenter/login-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story",
+                    "defaultValue": "{\n  render: (args: LoginPresComponent) => ({\n    props: {\n      ...args,\n    },\n  }),\n}",
+                    "rawdescription": "Default story",
+                    "description": "<p>Default story</p>\n"
+                }
+            ]
+        },
+        "groupedFunctions": {},
+        "groupedEnumerations": {},
+        "groupedTypeAliases": {
+            "src/app/features/login/presenter/login-pres.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<LoginPresComponent>",
+                    "file": "src/app/features/login/presenter/login-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Default component story type</p>\n",
+                    "kind": 180
+                }
+            ],
+            "src/app/features/navigation/presenter/navigation-pres.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<NavigationPresComponent>",
+                    "file": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Default component story type</p>\n",
+                    "kind": 180
+                }
+            ],
+            "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts": [
+                {
+                    "name": "Story",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "StoryObj<CampaignTypeSelectionPresComponent>",
+                    "file": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "description": "<p>Default component story type</p>\n",
+                    "kind": 180
+                }
+            ]
+        }
+    },
+    "routes": [],
+    "coverage": {
+        "count": 100,
+        "status": "very-good",
+        "files": [
+            {
+                "filePath": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "actions",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "events",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/features/campaigns/campaign-type-selection/presenter/campaign-type-selection-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/features/login/presenter/login-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "InvalidForm",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/features/login/presenter/login-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "actions",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Authenticated",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "events",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/features/navigation/presenter/navigation-pres.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "actions",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Dismissible",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "messagesSubject",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "mockUiMessageService",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            },
+            {
+                "filePath": "src/app/shared/components/ui-messages/ui-messages.component.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
+                "coveragePercent": 100,
+                "coverageCount": "1/1",
+                "status": "very-good"
+            }
+        ]
+    }
+}
