@@ -1,14 +1,13 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation, inject} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {LoginPresComponent} from '../presenter/login-pres.component';
-import {LoginInfo} from '../contracts/login.contracts';
+import {LoginInfo} from '../contracts';
 import {Store} from '@ngrx/store';
 import {AuthActions, AuthState} from '@core/auth';
 
 @Component({
   selector: 'ngs-login-cont',
   standalone: true,
-  imports: [CommonModule, LoginPresComponent],
+  imports: [LoginPresComponent],
   template: `<ngs-login-pres (loginSubmitted)="onLoginSubmitted($event)" />`,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,

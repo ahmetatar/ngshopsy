@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
-    "types": []
+    "types": ["node", "jest"]
   },
   "files": [
     "src/main.ts"
@@ -12,15 +12,13 @@
   ],
   "exclude": [
     "jest.config.ts",
+    "**/*.httpbackend.ts",
     "src/**/*.test.ts",
     "src/**/*.spec.ts",
     "**/*.stories.ts",
     "**/*.stories.js",
-    "cypress/**/*",
-    "cypress.config.ts",
-    "**/*.cy.ts",
-    "**/*.cy.js",
-    "**/*.cy.tsx",
-    "**/*.cy.jsx"
+    "**/*.fixture.ts",
+    "**/*.mocks.ts",
+    "testing"
   ]
 }

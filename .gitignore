@@ -33,9 +33,14 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+test-report.html
+build-storybook.log
 
 # System Files
 .DS_Store
 Thumbs.db
 
 .angular
+
+
+.nx/cache

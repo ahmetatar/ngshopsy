@@ -1,0 +1,45 @@
+{
+  "campaigns": [
+    {
+      "id": "rtw321dsq1e",
+      "name": "",
+      "budget": "",
+      "startDate": "",
+      "endDate": "",
+      "indefiniteCampaign": false,
+      "archived": false,
+      "type": "sponsored",
+      "adGroups": [
+        {
+          "name": "",
+          "products": [1, 3],
+          "keywords": [
+            {
+              "keyword": "keyword 1",
+              "bid": 1,
+              "suggestedBid": 2,
+              "matchType": 1
+            },
+            {
+              "keyword": "keyword 2",
+              "bid": 1,
+              "suggestedBid": 2,
+              "matchType": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "sku": "",
+      "price": 0,
+      "title": "",
+      "stock": 0,
+      "category": "",
+      "image": ""
+    }
+  ]
+}

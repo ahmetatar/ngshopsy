@@ -1,32 +1,17 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable, inject} from '@angular/core';
-import {Store, select} from '@ngrx/store';
 import {APP_CONFIG} from 'src/app/app.config';
-import {AuthActions, AuthState} from './store';
-import {selectAuth, isAuthenticated} from './store/auth.selectors';
 import {SignInRequest, SignInResult} from './auth.contracts';
+import {retry} from 'rxjs';
 
 export type AuthOps = 'signUp' | 'signInWithPassword';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   private readonly appConfig = inject(APP_CONFIG);
   private readonly httpClient = inject(HttpClient);
-  private readonly store = inject(Store<AuthState>);
-
-  /**
-   * Gets logged in user
-   */
-  public get user$() {
-    return this.store.pipe(select(selectAuth));
-  }
-
-  /**
-   * Gets whether the user is authenticated
-   */
-  public get isAuthenticated$() {
-    return this.store.pipe(select(isAuthenticated));
-  }
 
   /**
    * Sends authentication request to firebase auth rest api.
@@ -47,13 +32,6 @@ export class AuthService {
   }
 
   /**
-   * Sends signout reguest
-   */
-  public signout() {
-    this.store.dispatch(AuthActions.signOut());
-  }
-
-  /**
    * Sends signin or signup request to firebase rest api
    *
    * @param signInReq user login informations
@@ -61,11 +39,13 @@ export class AuthService {
    * @returns response
    */
   private sendAuthenticationRequest$(signInReq: SignInRequest, ops: AuthOps) {
-    return this.httpClient.post<SignInResult>(
-      `${this.appConfig.authBaseUrl}:${ops}`,
-      {...signInReq, returnSecureToken: true},
-      {params: this.getRequestParams()},
-    );
+    return this.httpClient
+      .post<SignInResult>(
+        `${this.appConfig.authBaseUrl}:${ops}`,
+        {...signInReq, returnSecureToken: true},
+        {params: this.getRequestParams()},
+      )
+      .pipe(retry(0));
   }
 
   /**

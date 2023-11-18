@@ -1,0 +1,1 @@
+export * from './svg-image.testing-provider';

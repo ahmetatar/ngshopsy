@@ -1,10 +1,16 @@
-import {Meta, StoryObj} from '@storybook/angular';
+import {Meta, StoryObj, moduleMetadata} from '@storybook/angular';
 import {NavigationPresComponent} from './navigation-pres.component';
 import {action} from '@storybook/addon-actions';
+import {RouterTestingModule} from '@angular/router/testing';
 
 export default {
   title: 'Features/Navigation',
   component: NavigationPresComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [RouterTestingModule],
+    }),
+  ],
   args: {
     title: 'NgShopsy',
   },

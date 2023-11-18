@@ -15,6 +15,10 @@
     {
       "imageName": "sponsored-display",
       "imagePath": "/images/sponsored-display.svg"
+    },
+    {
+      "imageName": "default-product",
+      "imagePath": "/images/default-product.svg"
     }
   ]
 }

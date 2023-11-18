@@ -1,0 +1,13 @@
+ngs-campaign-ad-group-pres {
+  .products-container {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .products-container {
+    .available-products,
+    .added-products {
+      flex-basis: 50%;
+    }
+  }
+}
