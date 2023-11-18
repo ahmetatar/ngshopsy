@@ -1,0 +1,17 @@
+ngs-campaign-details-pres {
+  .budget-field .form-control {
+    display: flex;
+    align-content: flex-start;
+    flex-flow: column wrap;
+    width: auto;
+  }
+
+  .campaign-dates-section {
+    display: flex;
+    gap: 1rem;
+
+    input {
+      width: auto;
+    }
+  }
+}

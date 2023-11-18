@@ -21,4 +21,9 @@ export interface AuthState {
    * The number of seconds in which the ID token expires
    */
   expiresIn?: string;
+
+  /**
+   * Token issued date
+   */
+  issued?: number;
 }

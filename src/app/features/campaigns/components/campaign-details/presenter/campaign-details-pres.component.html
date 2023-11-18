@@ -1,0 +1,84 @@
+<h2>Set Your Campaign Budget and Duration</h2>
+<form [formGroup]="form" role="form" novalidate (ngSubmit)="onFormSubmit(form.value)">
+  <div class="mb-3 campaign-name-section">
+    <label for="name" class="col-form-label">Campaign Name</label>
+    <div class="campaign-name-field">
+      <input
+        formControlName="name"
+        type="text"
+        class="form-control"
+        name="name"
+        id="name"
+        data-testid="campaign-name-field"
+        required
+      />
+    </div>
+    <div *ngIf="!this.form.controls.name.valid && this.form.controls.name.touched" class="invalid-feedback">
+      Campaign name is required
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="budget-section">
+      <label for="budget" class="col-form-label">Daily Budget</label>
+      <div class="budget-field">
+        <input
+          formControlName="budget"
+          type="number"
+          class="form-control"
+          id="budget"
+          data-testid="budget-field"
+          name="budget"
+        />
+      </div>
+      <div *ngIf="!this.form.controls.budget.valid && this.form.controls.budget.touched" class="invalid-feedback">
+        Campaign budgets should be at least $1.00
+      </div>
+    </div>
+  </div>
+  <div class="campaign-dates-section">
+    <div class="start-date">
+      <label for="startDate" class="col-form-label">Start Date</label>
+      <div class="start-date-field">
+        <input
+          formControlName="startDate"
+          type="date"
+          class="form-control"
+          id="startDate"
+          data-testid="start-date-field"
+        />
+      </div>
+    </div>
+    <div class="end-date">
+      <label for="endDate" class="col-form-label">End Date</label>
+      <div class="end-date-field">
+        <input
+          formControlName="endDate"
+          type="date"
+          class="form-control"
+          name="endDate"
+          id="endDate"
+          data-testid="end-date-field"
+          [attr.disabled]="this.form.controls.indefiniteCampaign.value ? true : null"
+        />
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="(form.controls.endDate.touched || form.controls.startDate.touched) && form.hasError('invalidDates')"
+    class="invalid-feedback"
+  >
+    Campaign dates are invalid
+  </div>
+  <div class="form-check form-switch indefinite-campaign mb-3 mt-3">
+    <input
+      formControlName="indefiniteCampaign"
+      class="form-check-input"
+      name="indefiniteCampaign"
+      type="checkbox"
+      role="switch"
+      id="indefiniteCampaign"
+    />
+    <label class="form-check-label" for="indefiniteCampaign">Set as indefinite campaign</label>
+  </div>
+  <ngs-action-buttons [buttons]="buttons" />
+</form>

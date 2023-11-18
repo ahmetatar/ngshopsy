@@ -1,19 +1,21 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Output, ViewEncapsulation} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {ChangeDetectionStrategy, Component, EventEmitter, Output, ViewEncapsulation, inject} from '@angular/core';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
-import {LoginInfo} from '../contracts/login.contracts';
+import {LoginInfo} from '../contracts/login.model';
 import {SvgDirective} from '@shared/directives';
+import {NgIf} from '@angular/common';
 
 @Component({
   selector: 'ngs-login-pres',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, SvgDirective],
+  imports: [NgIf, ReactiveFormsModule, SvgDirective],
   templateUrl: './login-pres.component.html',
   styleUrls: ['./login-pres.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginPresComponent {
+  private fb = inject(FormBuilder);
+
   /** Login submit event */
   @Output()
   loginSubmitted = new EventEmitter<LoginInfo>();
@@ -26,19 +28,17 @@ export class LoginPresComponent {
   });
 
   /** Gets all login informations */
-  public get loginInfo() {
+  get loginInfo() {
     return this.form.value as LoginInfo;
   }
 
   /** Username field */
-  public get email() {
+  get email() {
     return this.form.get('email');
   }
 
   /** Password field */
-  public get password() {
+  get password() {
     return this.form.get('password');
   }
-
-  constructor(private fb: FormBuilder) {}
 }

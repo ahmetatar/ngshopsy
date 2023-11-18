@@ -17,6 +17,7 @@ const preview = {
   parameters: {
     viewport: {
       viewports: bootstrapBreakpoints,
+      defaultViewport: 'LG'
     },
   },
   decorators: [componentWrapperDecorator((story) => `<div class="theme-orange">${story}</div>`)],

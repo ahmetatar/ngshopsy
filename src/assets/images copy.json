@@ -1,0 +1,24 @@
+{
+  "iconImageFiles": [
+    {
+      "imageName": "login",
+      "imagePath": "/images/login.svg"
+    },
+    {
+      "imageName": "sponsored-products",
+      "imagePath": "/images/sponsored-products.svg"
+    },
+    {
+      "imageName": "sponsored-brands",
+      "imagePath": "/images/sponsored-brands.svg"
+    },
+    {
+      "imageName": "sponsored-display",
+      "imagePath": "/images/sponsored-display.svg"
+    },
+    {
+      "imageName": "default-product",
+      "imagePath": "/images/default-product.svg"
+    }
+  ]
+}

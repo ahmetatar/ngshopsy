@@ -13,7 +13,7 @@ export default {
       providers: [
         provideHttpClient(),
         provideSvgImage({
-          path: '/images.json',
+          path: '/images.storybook.json',
         }),
       ],
     }),

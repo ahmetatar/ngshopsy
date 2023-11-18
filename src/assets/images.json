@@ -2,19 +2,23 @@
   "iconImageFiles": [
     {
       "imageName": "login",
-      "imagePath": "/images/login.svg"
+      "imagePath": "/assets/images/login.svg"
     },
     {
       "imageName": "sponsored-products",
-      "imagePath": "/images/sponsored-products.svg"
+      "imagePath": "/assets/images/sponsored-products.svg"
     },
     {
       "imageName": "sponsored-brands",
-      "imagePath": "/images/sponsored-brands.svg"
+      "imagePath": "/assets/images/sponsored-brands.svg"
     },
     {
       "imageName": "sponsored-display",
-      "imagePath": "/images/sponsored-display.svg"
+      "imagePath": "/assets/images/sponsored-display.svg"
+    },
+    {
+      "imageName": "default-product",
+      "imagePath": "/assets/images/default-product.svg"
     }
   ]
 }

@@ -1,1 +1,1 @@
-export * from './component-base.fixture';
+export * from './component.mock';

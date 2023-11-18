@@ -1,10 +1,15 @@
-import {Meta, StoryObj} from '@storybook/angular';
+import {Meta, StoryObj, moduleMetadata} from '@storybook/angular';
 import {NavigationPresComponent} from './navigation-pres.component';
-import {action} from '@storybook/addon-actions';
+import {RouterTestingModule} from '@angular/router/testing';
 
 export default {
   title: 'Features/Navigation',
   component: NavigationPresComponent,
+  decorators: [
+    moduleMetadata({
+      imports: [RouterTestingModule],
+    }),
+  ],
   args: {
     title: 'NgShopsy',
   },
@@ -13,24 +18,11 @@ export default {
 /** Default component story type */
 type Story = StoryObj<NavigationPresComponent>;
 
-/** Story actions */
-const actions = {
-  onLogout: action('logout'),
-  onLogin: action('login'),
-};
-
-/** Component events binded to actions */
-const events = {
-  login: actions.onLogin,
-  logout: actions.onLogout,
-};
-
 /** Default story */
 export const Primary: Story = {
   render: (args: NavigationPresComponent) => ({
     props: {
       ...args,
-      ...events,
     },
   }),
 };
@@ -41,7 +33,6 @@ export const Authenticated: Story = {
     props: {
       ...Primary.args,
       ...args,
-      ...events,
     },
   }),
   args: {
