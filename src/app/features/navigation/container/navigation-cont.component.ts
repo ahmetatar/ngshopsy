@@ -1,37 +1,33 @@
 import {ChangeDetectionStrategy, Component, ViewEncapsulation, inject} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {Router} from '@angular/router';
-import {NavigationModel} from '../contracts/navigation.contract';
-import {Observable, combineLatest, map} from 'rxjs';
+import {AsyncPipe} from '@angular/common';
+import {NavigationModel} from '../contracts';
+import {Observable, filter} from 'rxjs';
 import {NavigationPresComponent} from '../presenter';
-import {AuthService} from '@core/auth/auth.service';
+import {AuthActions, AuthState, selectUser} from '@core/auth';
+import {Store, select} from '@ngrx/store';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'ngs-navigation-cont',
   standalone: true,
-  imports: [CommonModule, NavigationPresComponent],
-  providers: [AuthService],
-  template: `<ngs-navigation-pres [navigationModel]="navigationModel$ | async" (logout)="logout()" />`,
+  imports: [AsyncPipe, NavigationPresComponent],
+  template: `<ngs-navigation-pres title="NgShopsy - PPC Campaign Management Tool" [navigationModel]="navigationModel$ | async" (logout)="logout()" />`,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavigationContComponent {
-  private readonly router = inject(Router);
-  private readonly authService = inject(AuthService);
+  private readonly store: Store<AuthState> = inject(Store);
 
   /**
    * Navigation model for presenter
    */
   navigationModel$!: Observable<NavigationModel>;
 
-  ngOnInit() {
-    this.navigationModel$ = combineLatest([
-      this.authService.isAuthenticated$, 
-      this.authService.user$]
-    ).pipe(map(([isAuthenticated, user]) => ({
-        email: user.email,
-        isAuthenticated,
-      })),
+  constructor() {
+    this.navigationModel$ = this.store.pipe(
+      select(selectUser),
+      filter((user) => !!user),
+      takeUntilDestroyed()
     );
   }
 
@@ -39,7 +35,6 @@ export class NavigationContComponent {
    * Changes authentication state and redirect user to login page
    */
   logout() {
-    this.authService.signout();
-    this.router.navigate(['login']);
+    this.store.dispatch(AuthActions.signOut());
   }
 }

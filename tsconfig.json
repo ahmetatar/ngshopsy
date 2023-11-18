@@ -30,14 +30,17 @@
       "@features/*": [
         "src/app/features/*"
       ],
-      "@layout/*": [
-        "src/app/layout/*"
+      "@layouts/*": [
+        "src/app/layouts/*"
       ],
       "@pages/*": [
         "src/app/pages/*"
       ],
       "@shared/*": [
         "src/app/shared/*"
+      ],
+      "@store/*": [
+        "src/app/store/*"
       ]
     }
   },
@@ -55,9 +58,6 @@
     },
     {
       "path": "./.storybook/tsconfig.json"
-    },
-    {
-      "path": "./cypress/tsconfig.json"
     }
   ],
   "compileOnSave": false,

@@ -1,51 +1,51 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {fireEvent, render, screen} from '@testing-library/angular';
 import {NavigationContComponent} from './navigation-cont.component';
-import {AuthService, isAuthenticated, selectAuth} from '@core/auth';
-import {MockStore} from '@ngrx/store/testing';
+import {ComponentFixture, TestBed, inject} from '@angular/core/testing';
+import {MockBaseComponent} from '@core/testing';
+import {MockStore, provideMockStore} from '@ngrx/store/testing';
+import {AuthActions, AuthState, selectUser} from '@core/auth';
+import {MemoizedSelector} from '@ngrx/store';
 
 describe('NavigatorContComponent', () => {
-  let component: NavigationContComponent;
-  let fixture: ComponentFixture<NavigationContComponent>;
-
-  const mockRouter = {
-    navigate: jest.fn(),
-  };
-
-  const mockAuthService = {
-    signin$: jest.fn(),
-    signout: jest.fn(),
-  };
+  let componentFixture: ComponentFixture<NavigationContComponent>;
+  let store: MockStore<AuthState>;
+  let userSelector: MemoizedSelector<any, {email: string | undefined; isAuthenticated: boolean}>;
 
   beforeEach(async () => {
-    TestBed.overrideComponent(NavigationContComponent, {
-      add: {
-        providers: [{provide: AuthService, useValue: mockAuthService}],
-      },
+    const {fixture} = await render(NavigationContComponent, {
+      providers: [provideMockStore()],
+      routes: [
+        {
+          path: 'login',
+          component: MockBaseComponent,
+        },
+      ],
     });
-
-    fixture = TestBed.createComponent(NavigationContComponent);
-    component = fixture.componentInstance;
+    componentFixture = fixture;
+    store = TestBed.inject(MockStore);
+    userSelector = store.overrideSelector(selectUser, {email: '', isAuthenticated: false});
   });
 
-  beforeEach(() => {
-    const mockStore = TestBed.inject(MockStore);
-    mockStore.overrideSelector(selectAuth, {email: 'test@test.com'});
-    mockStore.overrideSelector(isAuthenticated, true);
+  it('should visible login and signup button if user is not authenticated', () => {
+    expect(screen.getByTestId('login-button')).toBeInTheDocument();
+    expect(screen.getByTestId('signup-button')).toBeInTheDocument();
+    expect(screen.queryByTestId('logout-button')).not.toBeInTheDocument();
   });
 
-  it('should create navigation model if user is authenticated', (done) => {
-    fixture.detectChanges();
-    component.navigationModel$.subscribe((model) => {
-      expect(model).toBeTruthy();
-      expect(model.email).toBe('test@test.com');
-      expect(model.isAuthenticated).toBe(true);
-      done();
-    });
-  });
+  it('should only visible logout button if user is authenticated', inject([MockStore], (store: MockStore) => {
+    userSelector.setResult({email: '', isAuthenticated: true});
+    store.refreshState();
+    componentFixture.detectChanges();
 
-  it('should call navigate with logout route and signout user', () => {
-    component.logout();
-    expect(mockRouter.navigate).toHaveBeenCalledWith(['login']);
-    expect(mockAuthService.signout).toHaveBeenCalled();
-  });
+    expect(screen.queryByTestId('login-button')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('signup-button')).not.toBeInTheDocument();
+    expect(screen.getByTestId('logout-button')).toBeInTheDocument();
+  }));
+
+  it('should navigate to login page', inject([MockStore], (store: MockStore) => {
+    store.dispatch = jest.fn();
+    fireEvent.click(screen.getByTestId('logout-button'));
+
+    expect(store.dispatch).toHaveBeenCalledWith(AuthActions.signOut());
+  }));
 });

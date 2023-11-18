@@ -1,0 +1,43 @@
+<div [ngClass]="['keyword-item-row', disabled ? 'disabled' : '']" class="keyword-item-row" [formGroup]="form">
+  <div class="mb-3">
+    <label for="keyword" class="form-label">Keyword</label>
+    <input
+      formControlName="keyword"
+      type="text"
+      name="keyword"
+      class="form-control"
+      id="keyword"
+      placeholder="reusable food bag"
+      (blur)="onTouched($event)"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="matchType" class="form-label">Match Type</label>
+    <select
+      formControlName="matchType"
+      name="matchType"
+      id="matchType"
+      class="form-select"
+      aria-label="Match type select"
+    >
+      <option selected value="1">Broad</option>
+      <option value="2">Exact</option>
+      <option value="3">Phrase</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="bid" class="form-label">Bid</label>
+    <input
+      formControlName="bid"
+      type="number"
+      name="bid"
+      class="form-control"
+      id="bid"
+      placeholder="1.23"
+      (blur)="onTouched()"
+    />
+  </div>
+  <div class="actions">
+    <button class="btn btn-danger" (click)="deleteClicked.emit(index)">x</button>
+  </div>
+</div>

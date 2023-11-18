@@ -1,0 +1,30 @@
+<div class="actions">
+  <button class="btn btn-primary" ngsModalTrigger="#keywordsModal">Add Keywords</button>
+</div>
+<ngs-modal modalId="keywordsModal">
+  <ng-container header>
+    <h5 class="modal-title" id="keywordsModal">Add Campaign Keywords</h5>
+    <button type="button" class="btn-close" ngsModalDismiss aria-label="Close"></button>
+  </ng-container>
+  <ng-container body>
+    <p>
+      Add each keyword as a line
+    </p>
+    <textarea [formControl]="keywordListControl" name="keywords" id="" cols="53" rows="10"></textarea>
+  </ng-container>
+  <ng-container footer>
+    <button type="button" class="btn btn-secondary" ngsModalDismiss>Close</button>
+    <button type="button" class="btn btn-primary" (click)="onAddKeywords()">Add</button>
+  </ng-container>
+</ngs-modal>
+<hr />
+<form [formGroup]="form">
+  <div class="keyword-list" formArrayName="keywords">
+    <ng-container *ngFor="let keyword of keywords.controls; index as i">
+      <ngs-campaign-keyword-item [formControlName]="i" [index]="i" (deleteClicked)="onDeleteButtonClicked($event)" />
+    </ng-container>
+  </div>
+</form>
+<div>
+  <ngs-action-buttons [buttons]="buttons" (buttonClicked)="onKeywordsSubmit($event)" />
+</div>

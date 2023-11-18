@@ -1,7 +1,7 @@
 <div class="container login-form">
   <div svg="login" class="login-logo"></div>
   <div class="login-content">
-    <form [formGroup]="form" class="needs-validation" novalidate (ngSubmit)="loginSubmitted.emit(loginInfo)">
+    <form role="form" [formGroup]="form" class="needs-validation" novalidate (ngSubmit)="loginSubmitted.emit(loginInfo)">
       <div class="mb-3">
         <label for="email" class="form-label">Email Address</label>
         <input
@@ -10,10 +10,12 @@
           id="email"
           name="email"
           formControlName="email"
+          role="textbox"
+          data-testid="email-field"
           placeholder="eg. ahmetatar@mymail.com"
           required
         />
-        <div *ngIf="!this.email?.valid && this.email?.touched" class="invalid-feedback">
+        <div *ngIf="!email?.valid && email?.touched" class="invalid-feedback">
           Please enter a valid email address.
         </div>
       </div>
@@ -25,10 +27,12 @@
           id="password"
           name="password"
           formControlName="password"
+          role="textbox"
+          data-testid="password-field"
           placeholder="eg. strong password"
           required
         />
-        <div *ngIf="!this.password?.valid && this.password?.touched" class="invalid-feedback">
+        <div *ngIf="!password?.valid && password?.touched" class="invalid-feedback">
           Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, and
           one number.
         </div>
@@ -42,6 +46,8 @@
             id="isRemember"
             name="isRemember"
             formControlName="isRemember"
+            data-testid="remember-field"
+            role="checkbox"
           />
           <label class="form-check-label" for="isRemember"> Remember me? </label>
         </div>
@@ -50,7 +56,7 @@
         </div>
       </div>
       <div class="d-grid gap-2">
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button role="button" data-testid="login-button" type="submit" class="btn btn-primary">Submit Login</button>
       </div>
       <div class="signup">
         <span>Don't have account?</span>

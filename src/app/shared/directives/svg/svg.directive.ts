@@ -2,6 +2,7 @@ import {Directive, ElementRef, Input, inject} from '@angular/core';
 import {SvgImageService} from '@core/svg-utils';
 
 @Directive({
+  //eslint-disable-next-line @angular-eslint/directive-selector
   selector: '[svg]',
   standalone: true,
 })

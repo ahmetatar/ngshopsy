@@ -1,0 +1,16 @@
+<div class="product-item card">
+  <div class="card-body">
+    <div class="product-card-image" svg="default-product"></div>
+    <div>
+      <h5 class="card-title">{{ product.title }}</h5>
+      <p class="card-text">
+        <span class="price">{{ product.price }}</span>
+        <span class="stock">{{ product.stockStat }}</span>
+        <span class="sku">{{ product.sku }}</span>
+      </p>
+    </div>
+    <div class="actions-placeholder">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

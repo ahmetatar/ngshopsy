@@ -1,0 +1,39 @@
+@import '../../../../styling/theming/theme-orange';
+
+ngs-product-pres {
+  .product-item {
+    margin-bottom: 0.5rem;
+
+    .actions-placeholder {
+      align-self: flex-end;
+    }
+
+    .card-text .stock {
+      color: $accent-color;
+    }
+
+    .card-text span:not(:first-child) {
+      margin-left: 0.5rem;
+    }
+
+    .card-text span:not(:last-child) {
+      padding-right: 0.5rem;
+      border-right: 1px solid $accent-color;
+    }
+
+    .price {
+      color: $primary-color;
+      font-weight: bold;
+    }
+
+    .card-body {
+      display: flex;
+      gap: 30px;
+    }
+
+    .product-card-image svg {
+      width: 100px;
+      height: auto;
+    }
+  }
+}

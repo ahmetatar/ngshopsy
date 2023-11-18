@@ -1,0 +1,39 @@
+<div class="mb-3">
+  <label for="name" class="form-label">Ad Group Name</label>
+  <input
+    [formControl]="adGroupNameControl"
+    type="text"
+    class="form-control"
+    id="name"
+    name="name"
+    placeholder="Pet products ad group etc."
+  />
+  <div *ngIf="!adGroupNameControl.valid && adGroupNameControl.touched" class="invalid-feedback">
+    Please enter a valid ad group name.
+  </div>
+</div>
+<hr />
+<div class="products-container">
+  <div class="available-products">
+    <ng-container
+      *ngTemplateOutlet="products; context: {$implicit: {type: 'add', products: availableProducts}}"
+    ></ng-container>
+  </div>
+  <div class="added-products">
+    <ng-container
+      *ngTemplateOutlet="products; context: {$implicit: {type: 'remove', products: productsAddedtoAdGroup}}"
+    ></ng-container>
+  </div>
+</div>
+<ngs-action-buttons [buttons]="buttons" (buttonClicked)="actionButtonsClicked($event)" />
+
+<ng-template #products let-props>
+  <ng-container *ngIf="props.products.length > 0; else emptyProductList">
+    <ngs-product-pres *ngFor="let product of props.products" [product]="product">
+      <button class="btn btn-primary" (click)="onProductGroupChange(props.type, product)">
+        {{ props.type === 'add' ? 'Add' : 'Remove' }}
+      </button>
+    </ngs-product-pres>
+  </ng-container>
+</ng-template>
+<ng-template #emptyProductList> Empty product list </ng-template>

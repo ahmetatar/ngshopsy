@@ -6,7 +6,7 @@ import {of} from 'rxjs';
 import {By} from '@angular/platform-browser';
 
 @Component({
-  selector: 'dummy',
+  selector: 'ngs-dummy',
   template: `<div data-test-id="logo" svg="logo"></div>`,
 })
 class DummyComponent {}

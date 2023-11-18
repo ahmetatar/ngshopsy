@@ -1,5 +1,5 @@
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
-import {TestBed, fakeAsync, flush, inject} from '@angular/core/testing';
+import {TestBed, fakeAsync, flushMicrotasks, inject} from '@angular/core/testing';
 import {provideSvgImage} from './svg-image.provider';
 import {SvgImageService} from './svg-image.service';
 import {HttpClientModule} from '@angular/common/http';
@@ -48,7 +48,7 @@ describe('SvgImageService tests', () => {
       backend
         .expectOne((req) => req.url === expectedUrl && req.responseType === 'json' && req.method === 'GET')
         .flush(mockConfig);
-      flush();
+      flushMicrotasks();
     }),
   ));
 
@@ -58,7 +58,7 @@ describe('SvgImageService tests', () => {
       (svgService as any).metadata$.subscribe();
       (svgService as any).metadata$.subscribe();
 
-      const req = backend.expectOne(expectedUrl).flush(mockConfig);
+      backend.expectOne(expectedUrl).flush(mockConfig);
     },
   ));
 
@@ -75,7 +75,7 @@ describe('SvgImageService tests', () => {
       });
 
       backend.expectOne(expectedFileNameUrl).flush(view.buffer);
-      flush();
+      flushMicrotasks();
     }),
   ));
 

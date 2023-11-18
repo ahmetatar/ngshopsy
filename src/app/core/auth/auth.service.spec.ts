@@ -4,7 +4,7 @@ import {AuthService} from './auth.service';
 import {HttpTestingController, provideHttpClientTesting} from '@angular/common/http/testing';
 import {HttpClientModule} from '@angular/common/http';
 import {defaultAppConfig} from 'src/app/app.config';
-import {mockSignInReq, mockSignInResult} from './auth.mocks';
+import {mockSignInReq, mockSignInResult} from './testing';
 
 describe('AuthService tests', () => {
   let service: AuthService;

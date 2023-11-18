@@ -1,39 +1,38 @@
-import {ComponentFixture, TestBed, inject} from '@angular/core/testing';
+import {fireEvent, render, screen} from '@testing-library/angular';
 import {LoginContComponent} from './login-cont.component';
 import {MockStore, provideMockStore} from '@ngrx/store/testing';
-import {AuthActions} from '@core/auth';
-import {MockLoginPresComponent} from '../presenter/login-pres.component.mock';
-import {LoginPresComponent} from '../presenter/login-pres.component';
+import {inject} from '@angular/core/testing';
+import {AuthActions, AuthService, AuthServiceFixture} from '@core/auth';
+import {provideTestingSvgImage} from '@core/svg-utils/testing';
+import userEvent from '@testing-library/user-event';
 
 describe('LoginContComponent', () => {
-  let component: LoginContComponent;
-  let fixture: ComponentFixture<LoginContComponent>;
+  beforeEach(
+    async () =>
+      await render(LoginContComponent, {
+        providers: [
+          provideMockStore(), 
+          provideTestingSvgImage(), 
+          {provide: AuthService, useClass: AuthServiceFixture}
+        ],
+      }),
+  );
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LoginContComponent],
-      providers: [provideMockStore()],
-    })
-      .overrideComponent(LoginContComponent, {
-        remove: {imports: [LoginPresComponent]},
-        add: {imports: [MockLoginPresComponent]},
-      })
-      .compileComponents();
-
-    fixture = TestBed.createComponent(LoginContComponent);
-    component = fixture.componentInstance;
-  });
-
-  it('should dispatch signin action when login requested', inject([MockStore], (store: MockStore) => {
-    const loginData = {
-      email: 'ahmetatar@gmail.com',
-      password: '12345',
-      isRemember: false,
-    };
+  it('should login', inject([MockStore], async (store: MockStore) => {
+    const user = userEvent.setup();
     store.dispatch = jest.fn();
-    component.onLoginSubmitted(loginData);
 
-    const {email, password} = loginData;
-    expect(store.dispatch).toHaveBeenCalledWith(AuthActions.signIn({email, password, returnSecureToken: true}));
+    const emailControl = screen.getByTestId('email-field');
+    const passwordControl = screen.getByTestId('password-field');
+    const submitButton = screen.getByRole('button');
+    const form = screen.getByRole('form');
+
+    await user.type(emailControl, 'testuser');
+    await user.type(passwordControl, 'password1234');
+    fireEvent.click(submitButton);
+
+    expect(store.dispatch).toHaveBeenCalledWith(
+      AuthActions.signIn({email: 'testuser', password: 'password1234', returnSecureToken: true}),
+    );
   }));
 });

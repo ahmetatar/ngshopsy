@@ -6,11 +6,8 @@ import {of, throwError} from 'rxjs';
 import {AuthService} from '../auth.service';
 import {AuthEffects} from './auth.effects';
 import {ActionsSubject} from '@ngrx/store';
-import {getEffectsMetadata} from '@ngrx/effects';
-import {UiMessagesService, UiMessagesServiceFixture} from '@shared/components/ui-messages';
-import {AuthServiceFixture} from '../auth.service.fixture';
-import {SignInFailureResult, SignInRequest} from '../auth.contracts';
-import {TypedAction} from '@ngrx/store/src/models';
+import {UiMessagesService, UiMessagesServiceFixture} from '@shared/modules/ui-messages';
+import {AuthServiceFixture} from '../testing';
 
 describe('Auth Effects Tests', () => {
   const actions$ = new ActionsSubject();
@@ -30,15 +27,13 @@ describe('Auth Effects Tests', () => {
         provideMockActions(() => actions$),
       ],
     });
-  });
 
-  beforeEach(() => {
     authEffects = TestBed.inject(AuthEffects);
   });
 
   afterAll(() => jest.clearAllMocks());
 
-  it('should be return success action if signin request is successfuly', () => {
+  it('should be return success action if signin request is successfully', () => {
     const signInRequestAction = {
       email: 'testuser@test.com',
       password: '123456',
@@ -48,6 +43,7 @@ describe('Auth Effects Tests', () => {
 
     actions$.next(signInRequestAction);
     authServiceFixture.signIn$.mockReturnValue(of({idToken: 'test'}));
+
     authEffects.signIn$.subscribe((resultAction) => {
       expect(resultAction).toEqual(
         expect.objectContaining({
@@ -55,6 +51,9 @@ describe('Auth Effects Tests', () => {
           result: {idToken: 'test'},
         }),
       );
+
+      expect(uiMessageServiceFixture.clearMessages).toHaveBeenCalled();
+      expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/campaigns');
     });
 
     expect(authServiceFixture.signIn$).toHaveBeenCalledWith(signInRequestAction);
@@ -78,24 +77,5 @@ describe('Auth Effects Tests', () => {
         }),
       );
     });
-  });
-
-  it('should be navigate to products page if signin is successfuly', () => {
-    actions$.next({type: '[Auth] SignIn Success'});
-    authEffects.signInSuccess$.subscribe();
-
-    expect(uiMessageServiceFixture.clearMessages).toHaveBeenCalled();
-    expect(mockRouter.navigateByUrl).toHaveBeenCalledWith('/products');
-    expect(getEffectsMetadata(authEffects).signInSuccess$?.dispatch).toBe(false);
-  });
-
-  it('should be push error message to UI if signin is failed', () => {
-    actions$.next({type: '[Auth] SignIn Failure', result: {code: '1453', message: 'An error occured'}} as {
-      result: SignInFailureResult;
-    } & TypedAction<'[Auth] SignIn Failure'>);
-    authEffects.signInFailure$.subscribe();
-
-    expect(uiMessageServiceFixture.pushMessage).toHaveBeenCalled();
-    expect(getEffectsMetadata(authEffects).signInFailure$?.dispatch).toBe(false);
   });
 });

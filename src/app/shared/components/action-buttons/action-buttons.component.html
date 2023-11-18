@@ -1,0 +1,13 @@
+<div class="mb-3 action-buttons">
+  <div [ngClass]="options.useStack ? 'd-grid gap-2' : 'no-stack'">
+    <button
+      *ngFor="let button of buttons"
+      [type]="button.type"
+      [ngClass]="['btn', button.cssClass]"
+      [attr.role]="button.type"
+      (click)="buttonClicked.emit({source: button})"
+    >
+      {{ button.title }}
+    </button>
+  </div>
+</div>

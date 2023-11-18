@@ -1,0 +1,56 @@
+{
+  "campaigns": [
+    {
+      "id": "cm_321dsq",
+      "name": "Default Campaign",
+      "budget": "100",
+      "startDate": "01/15/2024",
+      "endDate": "",
+      "indefiniteCampaign": true,
+      "archived": false,
+      "type": "sponsored",
+      "adGroups": [
+        {
+          "name": "Default Ad Group",
+          "products": [1, 2],
+          "keywords": [
+            {
+              "keyword": "keyword 1",
+              "bid": 2,
+              "suggestedBid": 2,
+              "matchType": 1
+            },
+            {
+              "keyword": "keyword 2",
+              "bid": 1,
+              "suggestedBid": 2,
+              "matchType": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "title": "Washable Pee Pads for Dogs (3-packs) Reusable Waterproof Potty",
+      "price": "$33.45",
+      "stock": 100,
+      "sku": "SKU: Pads_1010",
+      "category": "pet",
+      "image": "",
+      "stockStat": "In Stock"
+    },
+    {
+      "id": 2,
+      "title": "Vamtac Womens Oversized Sweaters Cable Knit Long Sleeve Loose Casual Pullover",
+      "price": "$37.58",
+      "stock": 10,
+      "sku": "SKU: CLT_100",
+      "category": "pet",
+      "image": "",
+      "stockStat": "In Stock"
+    }
+  ]
+}
